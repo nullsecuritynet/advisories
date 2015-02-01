@@ -1,0 +1,108 @@
+===============================================================================
+|                                                                             |
+                         ____                     _ __
+              ___  __ __/ / /__ ___ ______ ______(_) /___ __
+             / _ \/ // / / (_-</ -_) __/ // / __/ / __/ // /
+            /_//_/\_,_/_/_/___/\__/\__/\_,_/_/ /_/\__/\_, /
+                                                     /___/ team
+
+                          PUBLIC SECURITY ADVISORY
+|                                                                             |
+===============================================================================
+
+
+TITLE
+===== 
+
+ICQ - Persistent Cross Site Scripting Vulnerability
+
+
+AUTHOR
+======
+
+noptrix
+
+
+DATE
+====
+
+07-26-2011
+
+
+VENDOR
+======
+
+ICQ - http://www.icq.com/
+
+
+AFFECTED PRODUCT
+================
+
+ICQ Client in version <= 7.5
+
+
+AFFECTED PLATFORMS
+==================
+
+Windows XP, Vista, 7
+
+
+VULNERABILITY CLASS
+===================
+
+Cross Site Scripting
+
+
+DESCRIPTION
+===========
+
+ICQ suffers from a persistent Cross-Site Scripting vulnerability due to a lack
+of input validation and output sanitization of the profile entries.
+
+
+PROOF OF CONCEPT
+================
+
+The following Javascript payload can be used as profile entries to trigger
+the described vulnerability:
+
+--- SNIP ---
+
+"><iframe src=z onload=alert('xss_p0wer_lol') <
+
+--- SNIP ---
+
+For a PoC demonstration see:
+
+    [+] http://www.nullsecurity.net/tmp/icq_cli_xss.png
+    [+] http://www.nullsecurity.net/tmp/icq_cli_xss2.png
+
+
+IMPACT
+======
+
+An attacker could trivially hijack session IDs of remote users and leverage the
+vulnerability to increase the attack vector to the underlying software and
+operating system of the victim.
+
+
+THREAT LEVEL
+============
+
+High
+
+
+STATUS
+======
+
+Fixed.
+
+
+DISCLAIMER
+==========
+
+nullsecurity.net hereby emphasize, that the information which is published here are
+for education purposes only. nullsecurity.net does not take any responsibility for
+any abuse or misusage!
+
+                Copyright (c) 2011 - nullsecurity.net

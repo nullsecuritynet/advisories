@@ -1,0 +1,111 @@
+===============================================================================
+|                                                                             |
+                         ____                     _ __
+              ___  __ __/ / /__ ___ ______ ______(_) /___ __
+             / _ \/ // / / (_-</ -_) __/ // / __/ / __/ // /
+            /_//_/\_,_/_/_/___/\__/\__/\_,_/_/ /_/\__/\_, /
+                                                     /___/ team
+
+                          PUBLIC SECURITY ADVISORY
+|                                                                             |
+===============================================================================
+
+
+TITLE
+=====
+
+Adium - HTML/Javascript - Cross Site Scripting Vulnerability
+
+
+AUTHOR
+======
+
+noptrix
+
+
+DATE
+====
+
+08-02-2011
+
+
+VENDOR
+======
+
+Adium - http://www.adium.im/
+
+
+AFFECTED PRODUCT
+================
+
+Adium in version <= 1.4.2
+
+
+AFFECTED PLATFORMS
+==================
+
+Mac OS X (10.6.8, 10.6.7, maybe other also...)
+
+
+VULNERABILITY CLASS
+===================
+
+Cross Site Scripting
+
+
+DESCRIPTION
+===========
+
+Adium suffers from a persistent HTML/Javascript injection / Cross-Site Scripting
+vulnerability due to a lack of input validation and output sanitization of
+filenames.
+
+
+PROOF OF CONCEPT
+================
+
+The following HTML/Javascript payload can be used as a filename to trigger the
+described vulnerability:
+
+--- SNIP ---
+
+sh3ll$ echo "123" > \"\>\<body\>\<h1\>0x90trix\ pwns\ -\ XSS\ POWER\ \<iframe\ \src\=\"www.google.com\"\ style\=\"background-color\:\ green\".gif
+
+--- SNIP ---
+
+For a PoC demonstration see:
+
+    [+] http://www.nullsecurity.net/tmp/adium_inject.png
+    [+] http://www.nullsecurity.net/tmp/adium_inject2.png
+    [+] http://www.nullsecurity.net/tmp/adium_inject3.png
+
+
+IMPACT
+======
+
+An attacker could for example inject HTML/Javascript code and redirect/phish any
+users of Adium. With some time, creativity, fantasy and good music, an attacker
+could leverage the vulnerability to increase the attack vector to the underlying
+software and operating system of the victim.
+
+
+THREAT LEVEL
+============
+
+Medium - High
+
+
+STATUS
+======
+
+Fixed.
+
+
+DISCLAIMER
+==========
+
+nullsecurity.net hereby emphasize, that the information which is published here are
+for education purposes only. nullsecurity.net does not take any responsibility for
+any abuse or misusage!
+
+                Copyright (c) 2011 - nullsecurity.net

@@ -1,0 +1,140 @@
+===============================================================================
+|                                                                             |
+                         ____                     _ __
+              ___  __ __/ / /__ ___ ______ ______(_) /___ __
+             / _ \/ // / / (_-</ -_) __/ // / __/ / __/ // /
+            /_//_/\_,_/_/_/___/\__/\__/\_,_/_/ /_/\__/\_, /
+                                                     /___/ team
+
+                          PUBLIC SECURITY ADVISORY
+|                                                                             |
+===============================================================================
+
+
+TITLE
+=====
+
+Skype - HTML/Javascript Code Injection
+
+
+AUTHOR
+======
+
+noptrix
+
+
+DATE
+====
+
+08-17-2011
+
+
+VENDOR
+======
+
+Skype - http://www.skype.com/
+
+
+AFFECTED PRODUCT
+================
+
+Skype in version <= 5.5.0.113
+
+
+AFFECTED PLATFORMS
+==================
+
+Windows XP, Vista, 7
+
+
+VULNERABILITY CLASS
+===================
+
+HTML/Javascript code injection
+
+
+DESCRIPTION
+
+Skype suffers from a persistent code injection vulnerability due to a lack
+of input validation and output sanitization of following profile entries:
+
+    [+] home
+    [+] office
+    [+] mobile
+
+
+PROOF OF CONCEPT
+================
+
+The following HTML codes can be used to trigger the described vulnerability:
+
+--- SNIP ---
+
+    [+] Home Phone Number:
+    <b>INJECTION HERE</b>
+
+    [+] Office Phone Number:
+    <center><i>INJECTION HERE</i></center>
+
+    [+] Mobile Phone Number:
+    <a href="#">INJECTION HERE</a>
+
+--- SNIP ---
+
+For a PoC demonstration see:
+
+    [+] http://www.nullsecurity.net/tmp/skype_inject.png
+
+
+IMPACT
+======
+
+An attacker could for example inject HTML/Javascript code. It has not been
+verified though, if it's possible to hijack cookies or to attack the underlying
+operating system. Attacker could give a try using extern .js files...
+
+
+THREAT LEVEL
+============
+
+Low - ?
+
+
+STATUS
+======
+
+Not Fixed.
+
+
+NOTES
+=====
+
+Skype disputes my finding and claims:
+
+"We have had this reported to us by various media outlets and have confirmed
+that the person is mistaken, this is not a web window and while it does cause a
+phone number to be underlined, does nothing other than this" Skype's spokewoman
+quote.
+
+Here is my answer:
+First of all, they use HTML to embed all entries in Skype user's profile. The
+"parser" is not validating the input, so I was able to inject HTML code (any
+html tags are possible). My first Skype bug was depending on these entries.
+Their fix was: Sanitize the output on their webservers. What about the
+input in the client app? Does it make sense to allow users to "embed" HTML code
+in their Skype profile and especially in those "phone number" fields?
+Also, there is no option to define any HTML code in Skype client. I was able to
+find those bugs with Linux Skype client. I guess, they don't focus so much on
+that client. Watch my Skype video about first finding at
+http://www.youtube.com/watch?v=eIgb9D-0DWs and see how I used the Linux Skype
+client. I will stop here, but you can test it.
+
+
+DISCLAIMER
+==========
+
+nullsecurity.net hereby emphasize, that the information which is published here are
+for education purposes only. nullsecurity.net does not take any responsibility for
+any abuse or misusage!
+
+                Copyright (c) 2011 - nullsecurity.net

@@ -1,0 +1,108 @@
+===============================================================================
+|                                                                             |
+                         ____                     _ __                                
+              ___  __ __/ / /__ ___ ______ ______(_) /___ __                          
+             / _ \/ // / / (_-</ -_) __/ // / __/ / __/ // /                          
+            /_//_/\_,_/_/_/___/\__/\__/\_,_/_/ /_/\__/\_, /                           
+                                                     /___/
+
+                          PUBLIC SECURITY ADVISORY
+|                                                                             |
+===============================================================================                  
+
+
+TITLE
+=====
+
+EasyFTP "APPE" command buffer overflow
+
+
+AUTHOR
+======
+
+Original vulnerability discovery: ThE g0bL!N
+Exploit: Swappage
+
+NOTE:
+The vulnerability in APPE command wasn't disclosed, but it's really similar to
+the one present in other commands for the same FTP version, so i decided to
+credit the first discovery
+
+
+DATE
+====
+
+03-03-2012
+
+
+AFFECTED PRODUCT
+================
+
+Easy FTP Server <= 1.7.0.11
+
+
+AFFECTED PLATFORMS
+==================
+
+Windows XP
+
+
+VULNERABILITY CLASS
+===================
+
+Remote Buffer Overflow
+
+
+DESCRIPTION
+===========
+
+EasyFTP <= 1.7.0.11 suffers of a buffer overflow vulnerability when processing
+the APPE command that can lead to remote code execution authentication is
+required for this exploit to work, but EasyFTP default installation has
+anonymous account
+
+NOTE: i decided to work on this exploit, even if the vulnerability was already
+known for self-educational reasons, i liked The buffer layout after the crash
+is pretty tricky and for this reason i decided to invest some time to find a way
+to expand the available buffer for the payload execution. The buffer in this
+software is split in 2 parts and neither has enaugh space for it to store a
+useful payload, for this reason i tried to split the shellcode in 2 parts and
+apply a patch overwriting EIP after the execution flow was under control.
+
+The exploit doesn't bypass NX but should be universal for all XP machines
+because it doesn't rely on external OS modules to work and is completely self
+contained in the binary.
+
+
+PROOF OF CONCEPT / EXPLOIT
+==========================
+
+[+] http://www.nullsecurity.net/tools/exploit/easyftp.py
+
+
+IMPACT
+======
+
+High
+
+
+THREAT LEVEL
+============
+
+Critical
+
+
+STATUS
+======
+
+Software no longer developed
+
+
+DISCLAIMER
+==========
+
+nullsecurity.net hereby emphasize, that the information which is published here are
+for education purposes only. nullsecurity.net does not take any responsibility for
+any abuse or misusage!
+
+                Copyright (c) 2012 - nullsecurity.net
